@@ -93,9 +93,9 @@ cd $WORKING_DIR/MIUI_FASTBOOT/$FILENAME
 bash flash_all_except_storage.sh
 
 cd $WORKING_DIR
-fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
+fastboot --disable-verity --disable-verification flash vbmeta $WORKING_DIR/vbmeta.img
 fastboot erase recovery
-fastboot flash recovery twrp.img
+fastboot flash recovery $WORKING_DIR/twrp.img
 echo ""
 echo ""
 echo "-------------------------------"
