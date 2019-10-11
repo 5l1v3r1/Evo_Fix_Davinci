@@ -88,7 +88,7 @@ done
 aria2c -x16 -j$(nproc) ${URL} || wget ${URL} || exit 1
 
 # Extract Fastboot File :3
-tar -xvzf $WORKING_DIR/temp/$FFN -C $WORKING_DIR/MIUI_FASTBOOT
+tar -xzf $WORKING_DIR/temp/$FFN -C $WORKING_DIR/MIUI_FASTBOOT
 
 # Removed stock flash_all_except_storage.sh from extracted fastboot folder
 rm -rf $WORKING_DIR/MIUI_FASTBOOT/$DIRNAME/flash_all_except_storage.sh
