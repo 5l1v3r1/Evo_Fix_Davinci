@@ -84,6 +84,9 @@ do
     esac
 done
 
+# CD to temp folder
+cd $WORKING_DIR/temp
+
 # Fetching builds, If it cannot find aria2c it gonna fall to wget, if your service are suck and does not have wget, MEH
 aria2c -x16 -j$(nproc) ${URL} || wget ${URL} || exit 1
 
