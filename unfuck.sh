@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 #    Haruka Development [General Scripts]
@@ -17,9 +18,11 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
 function pause(){
    read -p "$*"
 }
+
 echo "-------------------------------"
 echo ""
 echo ""
@@ -49,30 +52,35 @@ do
             URL="http://bigota.d.miui.com/V10.3.11.0.PFJMIXM/davinci_global_images_V10.3.11.0.PFJMIXM_20190802.0000.00_9.0_global_ea6683ef55.tgz"
             DIRNAME="davinci_global_images_V10.3.11.0.PFJMIXM_20190802.0000.00_9.0_global_ea6683ef55"
             FFN="$DIRNAME.tgz"
+            cp $WORKING_DIR/bash/flash_all_except_storage_GLOBAL.sh $WORKING_DIR/flash_all_except_storage.sh
             break
             ;;
         "EEA")
             URL="http://bigota.d.miui.com/V10.3.12.0.PFJEUXM/davinci_eea_global_images_V10.3.12.0.PFJEUXM_20190801.0000.00_9.0_eea_1d38ae0ec5.tgz"
             DIRNAME="davinci_eea_global_images_V10.3.12.0.PFJEUXM_20190801.0000.00_9.0_eea_1d38ae0ec5"
             FFN="$DIRNAME.tgz"
+            cp $WORKING_DIR/bash/flash_all_except_storage_GLOBAL.sh $WORKING_DIR/flash_all_except_storage.sh
             break
             ;;
         "CN")
             URL="http://bigota.d.miui.com/V10.3.15.0.PFJCNXM/davinci_images_V10.3.15.0.PFJCNXM_20190827.0000.00_9.0_cn_62327c4a51.tgz"
             DIRNAME="davinci_images_V10.3.15.0.PFJCNXM_20190827.0000.00_9.0_cn_62327c4a51"
             FFN="$DIRNAME.tgz"
+            cp $WORKING_DIR/bash/flash_all_except_storage_GLOBAL.sh $WORKING_DIR/flash_all_except_storage.sh
             break
             ;;
         "RU")
             URL="http://bigota.d.miui.com/V10.3.10.0.PFJRUXM/davinci_ru_global_images_V10.3.10.0.PFJRUXM_20190801.0000.00_9.0_global_6fbab43f85.tgz"
             DIRNAME="davinci_ru_global_images_V10.3.10.0.PFJRUXM_20190801.0000.00_9.0_global_6fbab43f85"
             FFN="$DIRNAME.tgz"
+            cp $WORKING_DIR/bash/flash_all_except_storage_GLOBAL.sh $WORKING_DIR/flash_all_except_storage.sh
             break
             ;;
         "INDIA")
             URL="http://bigota.d.miui.com/V10.3.8.0.PFJINXM/davinciin_in_global_images_V10.3.8.0.PFJINXM_20190816.0000.00_9.0_in_f68dcf8608.tgz"
             DIRNAME="davinciin_in_global_images_V10.3.8.0.PFJINXM_20190816.0000.00_9.0_in_f68dcf8608"
             FFN="$DIRNAME.tgz"
+            cp $WORKING_DIR/bash/flash_all_except_storage_INDIA.sh $WORKING_DIR/flash_all_except_storage.sh
             break
             ;;
         "Quit")
@@ -91,6 +99,13 @@ cd $WORKING_DIR/temp
 aria2c -x16 -j$(nproc) ${URL} || wget ${URL} || exit 1
 
 # Extract Fastboot File :3
+echo ""
+echo ""
+echo "-------------------------------"
+echo ""
+echo "Now extraxting files~"
+echo ""
+echo "-------------------------------"
 tar -xzf $WORKING_DIR/temp/$FFN -C $WORKING_DIR/MIUI_FASTBOOT
 
 # Removed stock flash_all_except_storage.sh from extracted fastboot folder
@@ -103,6 +118,15 @@ cp $WORKING_DIR/flash_all_except_storage.sh $WORKING_DIR/MIUI_FASTBOOT/$DIRNAME/
 cd $WORKING_DIR/MIUI_FASTBOOT/$DIRNAME
 
 # Run flashing script~
+echo ""
+echo ""
+echo "-------------------------------"
+echo ""
+echo "The flashing is about to start!"
+echo "Press enter to continue :P"
+echo ""
+echo "-------------------------------"
+pause 'Press [Enter] key to continue...'
 bash flash_all_except_storage.sh
 
 # CD to working dir indeed
